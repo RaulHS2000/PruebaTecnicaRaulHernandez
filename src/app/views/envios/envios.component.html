@@ -1,0 +1,136 @@
+<app-header></app-header>
+<div class="mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource">
+    <ng-container matColumnDef="direccion">
+      <mat-header-cell *matHeaderCellDef> Dirección</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.direccion }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="codigo_postal">
+      <mat-header-cell *matHeaderCellDef> Código Postal </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{ element.codigo_postal }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="destinatario">
+      <mat-header-cell *matHeaderCellDef> Destinatario </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{ element.destinatario }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="remitente">
+      <mat-header-cell *matHeaderCellDef> Remitente </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.remitente }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="peso_envio">
+      <mat-header-cell *matHeaderCellDef> Peso del envío </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.peso_envio }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="acciones">
+      <mat-header-cell  *matHeaderCellDef>Acciones</mat-header-cell>
+      <mat-cell *matCellDef="let registro">
+        <button mat-icon-button (click)="editarEnvio()">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="eliminarEnvio()">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+</div>
+
+<!-- Formulario de creacion -->
+<div id="formulario_creacion" class="mat-elevation-z8">
+  <div class="mt-5 pb-3">
+    <h1>Crear nuevo envío</h1>
+    <form>
+      <div class="row mb-4">
+        <div class="col">
+          <div class="form-outline">
+            <label class="form-label" for="direccion">Dirección</label>
+            <input type="text" id="direccion" class="form-control" />
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-outline">
+            <label class="form-label" for="destinatario">Destinatario</label>
+            <input type="text" id="destinatario" class="form-control" />
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-4">
+        <div class="col">
+          <div class="form-outline">
+            <label class="form-label" for="remitente">Remitente</label>
+            <input type="text" id="remitente" class="form-control" />
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="form-outline">
+            <label class="form-label" for="peso_envio">Peso del envío</label>
+            <input type="number" id="peso_envio" class="form-control" />
+          </div>
+        </div>
+      </div>
+
+      <button mat-raised-button color="primary" (click)="anyadirEnvio()" type="submit">
+        <mat-icon aria-hidden="false" fontIcon="add_circle_outline"></mat-icon>Añadir Envío
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- Formulario de actualización -->
+<div id="formulario_edicion" class="mat-elevation-z8" style="display: none;">
+  <div class="mt-5 pb-3">
+    <h1>Editar envío</h1>
+    <form>
+      <div class="row mb-4">
+        <div class="col">
+          <div class="form-outline">
+            <label class="form-label" for="direccion_edit">Dirección</label>
+            <input type="text" id="direccion_edit" class="form-control" />
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-outline">
+            <label class="form-label" for="destinatario_edit">Destinatario</label>
+            <input type="text" id="destinatario_edit" class="form-control" />
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-4">
+        <div class="col">
+          <div class="form-outline">
+            <label class="form-label" for="remitente_edit">Remitente</label>
+            <input type="text" id="remitente_edit" class="form-control" />
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="form-outline">
+            <label class="form-label" for="peso_envio_edit">Peso del envío</label>
+            <input type="number" id="peso_envio_edit" class="form-control" />
+          </div>
+        </div>
+      </div>
+
+      <button mat-raised-button color="primary" type="submit">
+        <mat-icon aria-hidden="false" fontIcon="add_circle_outline"></mat-icon
+        >Editar Envío
+      </button>
+    </form>
+  </div>
+</div>
+

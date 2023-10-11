@@ -1,0 +1,34 @@
+.container-buttons {
+    width: 700px;
+    height: 700px;
+    position: absolute;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+  }
+
+  .custom-button{
+    width: 300px;
+    height: 300px;
+    margin: 10px;
+    border: none;
+    border-radius: 0.5em;
+    background-size: cover;
+    cursor: pointer;
+  }
+
+  #home-button-1{
+    background-image: url('/assets/images/tipo_paquete.png');
+  }
+
+  #home-button-2{
+    background-image: url('/assets/images/trabajadores.png');
+  }
+
+  #home-button-3{
+    background-image: url('/assets/images/envios_registrados.png');
+  }
+
+  #home-button-4{
+    background-image: url('/assets/images/empresas_transportistas.png');
+  }
