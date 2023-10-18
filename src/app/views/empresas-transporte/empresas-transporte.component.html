@@ -1,2 +1,86 @@
 <app-header></app-header>
-<p>empresas-transporte works!</p>
+<div class="mat-elevation-z8">
+    <mat-table #table [dataSource]="empresas_transporte">
+        <ng-container matColumnDef="empresa_transportista">
+            <mat-header-cell *matHeaderCellDef> Empresa transportista</mat-header-cell>
+            <mat-cell *matCellDef="let empresas_transporte"> {{ empresas_transporte.empresa_transporte }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="codigos_postales">
+            <mat-header-cell *matHeaderCellDef> Códigos Postales </mat-header-cell>
+            <mat-cell *matCellDef="let empresas_transporte">
+                {{ empresas_transporte.codigos_postales }}
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="acciones">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let empresas_transporte">
+                <button mat-icon-button (click)="mostrarFormEdit(empresas_transporte.id)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button (click)="eliminarEmpresa(empresas_transporte.id)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+</div>
+
+<!-- Formulario de creacion -->
+<div id="formulario_creacion" class="mat-elevation-z8">
+    <div class="mt-5 pb-3">
+        <h1>Añadir nueva empresa</h1>
+        <form (ngSubmit)="createEmpresa()" [formGroup]="createEmpresaForm">
+            <div class="row mb-4">
+                <div class="col">
+                    <div class="form-outline">
+                        <label class="form-label" for="empresa_transporte">Nombre</label>
+                        <input type="text" id="empresa_transporte" class="form-control" />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-outline">
+                        <label class="form-label" for="codigos_postales">Códigos Postales</label>
+                        <input type="text" id="codigos_postales" class="form-control" />
+                    </div>
+                </div>
+            </div>
+
+            <button mat-raised-button color="primary" type="submit">
+                <mat-icon aria-hidden="false" fontIcon="add_circle_outline"></mat-icon>Añadir Empresa
+            </button>
+        </form>
+    </div>
+</div>
+
+
+<!-- Formulario de edición -->
+<div id="formulario_edicion" class="mat-elevation-z8" style="display: none;">
+    <div class="mt-5 pb-3">
+        <h1>Editar empresa</h1>
+        <form (ngSubmit)="editarEmpresa(empresas_transporte.id)" [formGroup]="editEmpresaForm">
+            <div class="row mb-4">
+                <div class="col">
+                    <div class="form-outline">
+                        <label class="form-label" for="empresa_transporte_edit">Nombre</label>
+                        <input type="text" id="empresa_transporte_edit" class="form-control" />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-outline">
+                        <label class="form-label" for="codigos_postales_edit">Códigos Postales</label>
+                        <input type="text" id="codigos_postales_edit" class="form-control" />
+                    </div>
+                </div>
+            </div>
+
+            <button mat-raised-button color="primary" type="submit">
+                <mat-icon>edit</mat-icon>Editar Empresa
+            </button>
+        </form>
+    </div>
+</div>

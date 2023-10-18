@@ -1,20 +1,20 @@
 <app-header></app-header>
 <div class="mat-elevation-z8">
-    <mat-table #table [dataSource]="dataSource">
+    <mat-table #table [dataSource]="usuarios">
   
       <ng-container matColumnDef="nombre">
         <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.nombre}} </mat-cell>
+        <mat-cell *matCellDef="let user"> {{user.nombre}} </mat-cell>
       </ng-container>
   
       <ng-container matColumnDef="apellido">
         <mat-header-cell *matHeaderCellDef> Apellido </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.apellido}} </mat-cell>
+        <mat-cell *matCellDef="let user"> {{user.apellido}} </mat-cell>
       </ng-container>
   
-      <ng-container matColumnDef="correo">
+      <ng-container matColumnDef="email">
         <mat-header-cell *matHeaderCellDef> Correo electrónico </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.correo}} </mat-cell>
+        <mat-cell *matCellDef="let user"> {{user.email}} </mat-cell>
       </ng-container>
   
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
