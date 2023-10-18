@@ -41,54 +41,64 @@ export class EnviosComponent {
   //CREAR UN ENVIO
   createEnvio() {
 
-   var codigo = $('#codigo_postal').val();
-   console.log(codigo)
-    
-    switch ($('#codigo_postal').val()) {
-      case "15":
-      case "16":
-      case "17":
-      case "18":
-      case "19":
-        this.empresaEnvio = "Correos";
-        break;
+    var codigo = $('#codigo_postal').val();
 
-      case "20":
-      case "21":
-      case "22":
-      case "23":
-      case "24":
-      case "25":
-        this.empresaEnvio = "Seur";
-        break;
+    if (codigo) {
 
-      default:
-        this.empresaEnvio = "INVENT";
-        break;
+      switch (codigo.toString().substring(0, 2)) {
+        case "15":
+        case "16":
+        case "17":
+        case "18":
+        case "19":
+          this.empresaEnvio = "Correos";
+          break;
+
+        case "20":
+        case "21":
+        case "22":
+        case "23":
+        case "24":
+        case "25":
+          this.empresaEnvio = "Seur";
+          break;
+
+        default:
+          this.empresaEnvio = "INVENT";
+          break;
+      }
+
     }
 
-    // var peso = parseFloat($('#peso').val());
+    var peso = $('#peso').val();
 
-    // if (peso > 0 && peso <= 0.1) {
-    //   this.precioEnvio = peso * 5;
-    //   this.tipo_paquete = 'Paquete ultra ligero'
+    if (peso) {
 
-    // } else if(peso > 0.1 && peso <= 0.3){
-    //   this.precioEnvio = peso * 5 + 1;
-    //   this.tipo_paquete = 'Paquete ligero';
+      peso = parseFloat(peso.toString());
 
-    // } else if(peso > 0.3 && peso <= 5){
-    //   this.precioEnvio = peso * 10;
-    //   this.tipo_paquete = 'Paquete estándar';
+      if (peso > 0 && peso <= 0.1) {
+        this.precioEnvio = peso * 5;
+        this.tipo_paquete = 'Paquete ultra ligero'
 
-    // } else if(peso > 5 && peso <= 10){
-    //   this.precioEnvio = peso * 5 + peso + 75;
-    //   this.tipo_paquete = 'Paquete pesado';
+      } else if (peso > 0.1 && peso <= 0.3) {
+        this.precioEnvio = peso * 5 + 1;
+        this.tipo_paquete = 'Paquete ligero';
 
-    // } else if(peso > 10){
-    //   this.precioEnvio = (peso - 10) * 7.5 + 130 + peso;
-    //   this.tipo_paquete = 'Gran volumen';
-    // }
+      } else if (peso > 0.3 && peso <= 5) {
+        this.precioEnvio = peso * 10;
+        this.tipo_paquete = 'Paquete estándar';
+
+      } else if (peso > 5 && peso <= 10) {
+        this.precioEnvio = peso * 5 + peso + 75;
+        this.tipo_paquete = 'Paquete pesado';
+
+      } else if (peso > 10) {
+        this.precioEnvio = (peso - 10) * 7.5 + 130 + peso;
+        this.tipo_paquete = 'Gran volumen';
+      }
+      
+    } 
+
 
     //Obtenemos los datos del formulario de creacion
     this.createEnvioForm = this.formBuilder.group({
