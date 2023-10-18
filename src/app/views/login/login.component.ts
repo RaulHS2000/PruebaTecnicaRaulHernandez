@@ -35,14 +35,12 @@ export class LoginComponent {
       
       this.authService.login(email.toString(), password.toString()).subscribe(
         (response) => {
-          // La llamada API fue exitosa y el usuario está autenticado.
-          // Redirige al usuario a la página protegida.
+
           this.router.navigate(['/home']);
           console.log(response);
         },
         (error) => {
-          // La llamada API falló o las credenciales son incorrectas.
-          // Puedes mostrar un mensaje de error en el formulario.
+          this.router.navigate(['/login']);
           console.log(error);
         }
       );

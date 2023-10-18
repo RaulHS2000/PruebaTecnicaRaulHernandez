@@ -32,7 +32,7 @@
 
 <!-- Formulario de creacion -->
 <div id="formulario_creacion" class="mat-elevation-z8">
-    <div class="mt-5 pb-3">
+    <div class="mt-5 p-4">
         <h1>Añadir nueva empresa</h1>
         <form (ngSubmit)="createEmpresa()" [formGroup]="createEmpresaForm">
             <div class="row mb-4">
@@ -60,7 +60,7 @@
 
 <!-- Formulario de edición -->
 <div id="formulario_edicion" class="mat-elevation-z8" style="display: none;">
-    <div class="mt-5 pb-3">
+    <div class="mt-5 p-4">
         <h1>Editar empresa</h1>
         <form (ngSubmit)="editarEmpresa(empresas_transporte.id)" [formGroup]="editEmpresaForm">
             <div class="row mb-4">

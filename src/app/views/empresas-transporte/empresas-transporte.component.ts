@@ -68,7 +68,6 @@ export class EmpresasTransporteComponent {
 
   mostrarFormEdit(id: number){
     $("#formulario_edicion").css("display", "block");
-    // $("#formulario_creacion").css("display", "none");
 
     localStorage.setItem('id', id.toString());
   }
