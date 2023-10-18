@@ -15,4 +15,8 @@ export class UsuariosService {
     return this.usuariosRepository.find();
   }
 
+  login(email: string, password: string){
+    return this.usuariosRepository.findOne({ where: { email, password } });
+  }
+
 }

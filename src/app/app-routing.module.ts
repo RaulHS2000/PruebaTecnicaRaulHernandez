@@ -7,6 +7,7 @@ import { EnviosComponent } from './views/envios/envios.component';
 import { TiposPaquetesComponent } from './views/tipos-paquetes/tipos-paquetes.component';
 import { HomeComponent } from './views/home/home.component';
 
+
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },

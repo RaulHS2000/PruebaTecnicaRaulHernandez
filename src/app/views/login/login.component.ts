@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import {FormControl, Validators, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {NgIf} from '@angular/common';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatIconModule} from '@angular/material/icon';
+import { FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgIf } from '@angular/common';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ import {MatIconModule} from '@angular/material/icon';
 })
 
 export class LoginComponent {
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService: AuthService) { }
 
   email = new FormControl('', [Validators.required, Validators.email]);
   hide = true;
@@ -29,12 +30,24 @@ export class LoginComponent {
 
     var email = $("#email_field").val();
     var password = $("#password_field").val();
-    
-    if (email == "rahesa@hotmail.es" && password == "inventrh" ) {
-      this.router.navigate(['/home']);
-    } else {
-   
+
+    if(email && password){
+      
+      this.authService.login(email.toString(), password.toString()).subscribe(
+        (response) => {
+          // La llamada API fue exitosa y el usuario está autenticado.
+          // Redirige al usuario a la página protegida.
+          this.router.navigate(['/home']);
+          console.log(response);
+        },
+        (error) => {
+          // La llamada API falló o las credenciales son incorrectas.
+          // Puedes mostrar un mensaje de error en el formulario.
+          console.log(error);
+        }
+      );
     }
+
   }
 
 }

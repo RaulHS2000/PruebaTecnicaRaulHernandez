@@ -10,4 +10,9 @@ export class UsuariosController {
     return this.usuariosService.findAll();
   }
 
+  @Post('login')
+  verificarRegistro(@Body() data: { email: string, password: string }) {
+    return this.usuariosService.login(data.email, data.password);
+  }
+
 }
